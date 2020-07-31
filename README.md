@@ -1,5 +1,5 @@
 # signalk-netgear-lte-status
-SignalK Node Server Plugin that get status from a netgear lte-modem
+SignalK Node Server Plugin that gets status from a netgear lte-modem
 
 This sould work with the following devices devices, I've only tested with a LB1120
 * [LB1120](https://www.netgear.com/home/products/mobile-broadband/lte-modems/LB1120.aspx)
