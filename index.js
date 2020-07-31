@@ -137,7 +137,7 @@ module.exports = function(app) {
   
   plugin.id = "signalk-netgear-lte-status"
   plugin.name = "Netgear LTE Status"
-  plugin.description = "SignalK Node Server Plugin that get status from a netgear lte-modem"
+  plugin.description = "SignalK Node Server Plugin that gets status from a netgear lte-modem"
 
   plugin.schema = {
     type: "object",
