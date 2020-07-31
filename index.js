@@ -34,11 +34,15 @@ const keys = {
 module.exports = function(app) {
   var plugin = {};
   var interval
+  var options
 
   plugin.start = function(props) {
-    const url = `http://${props.host}`
+    options = props
+    plugin.connect()
+  }
 
-
+  plugin.connect = function() {
+    const url = `http://${options.host}`
     fetch(`${url}/model.json`)
       .then(r => r.json())
       .then(parsed => {
@@ -47,12 +51,13 @@ module.exports = function(app) {
         app.debug(`secToken ${secToken}`)
         const params = new URLSearchParams()
         //const params = new FormData()
-        params.set('session.password', props.password)
+        params.set('session.password', options.password)
         params.set('token', secToken)
 
         const configURL = parsed.general.configURL
         const cookie = configURL.split('=')[1]
         app.debug(`configURL ${configURL}`)
+        app.setProviderStatus('Connected')
         fetch(`${url}${configURL}`, {
           method: 'POST',
           body: params,
@@ -62,6 +67,12 @@ module.exports = function(app) {
           credentials: 'include'
         }).then( r => {
           app.debug(`status: ${r.status} ${r.statusText}`)
+
+          if ( r.status !== 204 && r.status !== 200 ) {
+            app.setProviderError(`unable to login: ${r.statusText}`)
+            return
+          }
+          
           const cookies = r.headers.raw()['set-cookie']
           const session = cookies[0].split(';')[0]
           
@@ -121,11 +132,33 @@ module.exports = function(app) {
                   ]
                 })
               })
+              .catch(err => {
+                const msg = `unable to get status: ${err.msg}`
+                app.setProviderError(msg)
+              })
           }
+          app.setProviderStatus('Connected and logged In')
           getStatus()
-          setInterval(getStatus, 10000)
+          setInterval(getStatus, options.pollTime ? options.pollTime*1000 : 10000)
         })
+          .catch(err => {
+            const msg = `unable to login: ${err.message}`
+            app.setProviderError(err.msg)
+          })
       })
+      .catch(err => {
+        scheduleReconnect(err.message)
+      })
+  }
+  
+  function scheduleReconnect(errorMessage) {
+    const delay = options.pollTime ? options.pollTime*1000 : 10000
+    const msg = `${errorMessage} (retry delay ${(
+    delay / 1000
+  ).toFixed(0)} s)`
+    app.error(errorMessage)
+    app.setProviderError(msg)
+    setTimeout(plugin.connect, delay)
   }
   
   plugin.stop = function() {
@@ -150,6 +183,12 @@ module.exports = function(app) {
       password: {
         type: 'string',
         title: 'Password'
+      },
+      pollTime: {
+        type: 'number',
+        title: 'Poll Time',
+        default: 10,
+        description: 'In seconds'
       }
     }
   }
