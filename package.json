@@ -1,0 +1,27 @@
+{
+  "name": "signalk-netgear-lte-status",
+  "version": "1.0.0",
+  "description": "SignalK Node Server Plugin that get status from a netgear lte-modem",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "changelog": "github-changes -o sbender9 -r signalk-netgear-lte-status -a --only-pulls --use-commit-body --data=pulls  --tag-name=v$npm_package_version",
+    "release": "git tag -d v$npm_package_version ; npm run changelog && git add CHANGELOG.md && git commit -m 'chore: update changelog' && git tag v$npm_package_version && git push --tags && git push"
+  },
+  "keywords": [
+    "signalk-node-server-plugin"
+  ],
+  "author": "scott@scottbender.net",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "lodash": "^4.17.19",
+    "node-fetch": "^2.6.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sbender9/signalk-netgear-lte-status"
+  },
+  "devDependencies": {
+    "github-changes": "^1.1.2"
+  }
+}
