@@ -107,7 +107,7 @@ module.exports = function(app) {
                   }
                 })
 
-                if ( parsed.sms.msgs.length > 0 ) {
+                if ( parsed.sms.msgs.length > 0 && parsed.sms.msgs[0].text ) {
                   values.push({
                     path: `${prefix}.lastMessage`,
                     value: parsed.sms.msgs[0].text
