@@ -29,7 +29,13 @@ const keys = {
   'wwanadv.txLevel': 'txLevel',
   'wwanadv.curBand': 'curBand',
   'wwanadv.cellId': 'cellId',
-  'wwan.registerNetworkDisplay': 'registerNetworkDisplay'
+  'wwan.registerNetworkDisplay': 'registerNetworkDisplay',
+  'wwan.signalStrength.rssi': 'rssi',
+  'wwan.signalStrength.ecio': 'ecio',
+  'wwan.signalStrength.sinr': 'sinr',
+  'wwan.signalStrength.rsrp': 'rsrp',
+  'wwan.signalStrength.rscp': 'rscp',
+  'wwan.signalStrength.rsrq': 'rsrq',
 }
 
 module.exports = function(app) {
