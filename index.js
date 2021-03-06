@@ -19,6 +19,7 @@ const _ = require('lodash')
 
 const prefix = 'networking.lte'
 const keys = {
+  'wwan.IP': `ip`,
   'wwan.dataUsage.generic.dataTransferred': `usage`,
   'wwan.connectionText': 'connectionText',
   'wwan.connectionType': 'connectionType',
