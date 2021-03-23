@@ -35,7 +35,7 @@ const keys = {
   'wwan.signalStrength.sinr': 'sinr',
   'wwan.signalStrength.rsrp': 'rsrp',
   'wwan.signalStrength.rscp': 'rscp',
-  'wwan.signalStrength.rsrq': 'rsrq',
+  'wwan.signalStrength.rsrq': 'rsrq'
 }
 
 module.exports = function(app) {
