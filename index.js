@@ -34,9 +34,9 @@ const keys = {
   'wwan.signalStrength.ecio': 'ecio',
   'wwan.signalStrength.sinr': 'sinr',
   'wwan.signalStrength.rsrp': 'rsrp',
-  'wwan.signalStrength.rscp': 'rscp',
-  'wwan.signalStrength.rsrq': 'rsrq'
-}
+  'wwan.signalStrength.rsrq': 'rsrq',
+  'wwan.signalStrength.rscp': 'rscp'
+  }
 
 module.exports = function(app) {
   var plugin = {};
