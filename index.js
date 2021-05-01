@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 
+
+
 const { URLSearchParams } = require('url')
 const fetch = require('node-fetch')
 const _ = require('lodash')                                                     
@@ -29,8 +31,14 @@ const keys = {
   'wwanadv.txLevel': 'txLevel',
   'wwanadv.curBand': 'curBand',
   'wwanadv.cellId': 'cellId',
-  'wwan.registerNetworkDisplay': 'registerNetworkDisplay'
-}
+  'wwan.registerNetworkDisplay': 'registerNetworkDisplay',
+  'wwan.signalStrength.rssi': 'rssi',
+  'wwan.signalStrength.ecio': 'ecio',
+  'wwan.signalStrength.sinr': 'sinr',
+  'wwan.signalStrength.rsrp': 'rsrp',
+  'wwan.signalStrength.rsrq': 'rsrq',
+  'wwan.signalStrength.rscp': 'rscp'
+  }
 
 module.exports = function(app) {
   var plugin = {};
