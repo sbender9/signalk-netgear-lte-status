@@ -10,7 +10,7 @@ This should work with the following devices devices,  tested with a LB1120 & als
 It generates the following paths:
 
 * networking.lte.usage
-* networking.lte.connectionText              "4G" or "3G" ("wireline"?)
+* networking.lte.connectionText  ..............."4G" or "3G" ("wireline"?)
 * networking.lte.connectionType               IPV4 or IPv6 etc
 * networking.lte.radioQuality                 0 to 1.0 (eg 4 bars = 0.8)
 * networking.lte.bars                          0 to 5
